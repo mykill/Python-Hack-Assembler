@@ -1,4 +1,4 @@
-def dest(destString):
+def dest(dest_string):
 	destination = {
 		None : '000',
 		'M' : '001',
@@ -7,42 +7,45 @@ def dest(destString):
 		'A' : '100',
 		'AM' : '101',
 		'AD' : '110',
-		'AMD' : '111'	}
-	return destination[destString]
+		'AMD' : '111'
+		}
+	return destination[dest_string]
 
-def comp(cmpString):
+def cmp(cmp_string):
+	#print cmp_string
+	if 'A' in cmp_string:
+		a_bit = '0'
+		cmp_string = cmp_string.replace('A', '*')
+	elif 'M' in cmp_string:
+		a_bit = '1'
+		cmp_string = cmp_string.replace('M', '*')
+	else:
+		a_bit = '0'
+
 	compute = {
-		'0' : '0101010',
-		'1' : '0111111',
-		'-1' : '0111010',
-		'D' : '0001100',
-		'A' : '0110000',
-		'!D' : '0001101',
-		'!A' : '0110001',
-		'-D' : '0001111',
-		'-A' : '0110011',
-		'D+1' : '0011111',
-		'A+1' : '0110111',
-		'D-1' : '0001110',
-		'A-1' : '0110010',
-		'D+A' : '0000010',
-		'D-A' : '0010011',
-		'A-D' : '0000111',
-		'D&A' : '0000000',
-		'D|A' : '0010101',
-                'M' : '1110000',
-                '!M' : '1110001',
-                '-M' : '1110011',
-                'M+1' : '1110111',
-                'M-1' : '1110010',
-                'D+M' : '1000010',
-                'D-M' : '1010011',
-                'M-D' : '1000111',
-                'D&M' : '1000000',
-                'D|M' : '1010101',	}
-	return  compute[cmpString]
+		'0' : '101010',
+		'1' : '111111',
+		'-1' : '111010',
+		'D' : '001100',
+		'*' : '110000',
+		'!D' : '001101',
+		'!*' : '110001',
+		'-D' : '001111',
+		'-*' : '110011',
+		'D+1' : '011111',
+		'*+1' : '110111',
+		'D-1' : '001110',
+		'*-1' : '110010',
+		'D+*' : '000010',
+		'D-*' : '010011',
+		'*-D' : '000111',
+		'D&*' : '000000',
+		'D|*' : '010101'
+		}
+	
+	return a_bit + compute[cmp_string]
 
-def jmp(jmpString):
+def jmp(jmp_string):
 	jump = {
 		None : '000',
 		'JGT' : '001',
@@ -51,8 +54,9 @@ def jmp(jmpString):
 		'JLT' : '100',
 		'JNE' : '101',
 		'JLE' : '110',
-		'JMP' : '111'	}
-	return jump[jmpString]
+		'JMP' : '111'
+		}
+	return jump[jmp_string]
 	
 
 
